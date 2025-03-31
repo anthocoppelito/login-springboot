@@ -39,6 +39,38 @@ public class UserController {
         return ResponseEntity.ok(updatedUser);
     }
 
+    //Actualizar a admin
+    @PutMapping("/admin/setAdmin/{id}")
+    public ResponseEntity<?> setAdmin(@PathVariable Integer id){
+        userService.updateUserRole(id, "ADMIN");
+    return ResponseEntity.ok("Rol actualizado a ADMIN");
+    }
+
+    //Actualizar a cajero
+    @PutMapping("/admin/setCajero/{id}")
+    public ResponseEntity<?> setCajero(@PathVariable Integer id){
+        userService.updateUserRole(id, "CAJERO");
+    return ResponseEntity.ok("Rol actualizado a CAJERO");
+    }
+
+    //Actualizar a bodega
+    @PutMapping("/admin/setBodega/{id}")
+    public ResponseEntity<?> setBodega(@PathVariable Integer id){
+        userService.updateUserRole(id, "BODEGA");
+    return ResponseEntity.ok("Rol actualizado a BODEGA");
+    }
+
+    //Actualizar a usuario
+    @PutMapping("/admin/setUsuario/{id}")
+    public ResponseEntity<?> setUsuario(@PathVariable Integer id){
+        userService.updateUserRole(id, "USER");
+    return ResponseEntity.ok("Rol actualizado a USUARIO");
+    }
+
+    
+
+    
+
 
 
 

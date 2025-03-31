@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -50,6 +51,14 @@ public class UserService {
                 user.getCountry(),
                 user.getRole().name()
         );
+    }
+
+    @Transactional
+    public void updateUserRole(Integer id, String role) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+        user.setRole(Role.valueOf(role)); // Cambiar el rol del usuario
+        userRepository.save(user); // Guardar los cambios
     }
 
 

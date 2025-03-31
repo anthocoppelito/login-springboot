@@ -36,7 +36,6 @@ public class User implements UserDetails {
     String firstname;
     String country;
     String password;
-
     Role role;
 
     @Override
