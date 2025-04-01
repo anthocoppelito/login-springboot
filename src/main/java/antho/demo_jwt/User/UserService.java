@@ -30,6 +30,19 @@ public class UserService {
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
     }
 
+    public UserDTO getUserDTOByUsername(String username) {
+        return userRepository.findByUsername(username)
+                .map(user -> new UserDTO(
+                        user.getId(),
+                        user.getUsername(),
+                        user.getLastname(),
+                        user.getFirstname(),
+                        user.getCountry(),
+                        user.getRole().name()
+                ))
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+    }
+
     public UserDTO updateUser(Integer id, UpdateUserDTO updateUserDTO) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found"));

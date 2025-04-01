@@ -32,6 +32,13 @@ public class UserController {
         return ResponseEntity.ok(userDTO);
     }
 
+    //Obtener datos no sensibles por username
+    @GetMapping("/public/username/{username}")
+    public ResponseEntity<UserDTO> getUserSummaryByUsername(@PathVariable String username) {
+        UserDTO userDTO = userService.getUserDTOByUsername(username);
+        return ResponseEntity.ok(userDTO);
+    }
+
     //Actualizar datos
     @PutMapping("/admin/{id}")
     public ResponseEntity<UserDTO> updateUser(@PathVariable Integer id, @RequestBody UpdateUserDTO updateUserDTO) {
