@@ -1,5 +1,7 @@
 package antho.demo_jwt.User;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,6 +41,13 @@ public class UserController {
         return ResponseEntity.ok(userDTO);
     }
 
+    //Obtener todos los usuarios
+    @GetMapping("/public/username/all")
+    public ResponseEntity<List<UserDTO>> getUserAllUser() {
+        List<UserDTO> users = userService.getAllUsers();
+        return ResponseEntity.ok(users);
+    }
+
     //Actualizar datos
     @PutMapping("/admin/{id}")
     public ResponseEntity<UserDTO> updateUser(@PathVariable Integer id, @RequestBody UpdateUserDTO updateUserDTO) {
@@ -47,30 +56,30 @@ public class UserController {
     }
 
     //Actualizar a admin
-    @PutMapping("/admin/setAdmin/{id}")
-    public ResponseEntity<?> setAdmin(@PathVariable Integer id){
-        userService.updateUserRole(id, "ADMIN");
+    @PutMapping("/admin/setAdmin/{username}")
+    public ResponseEntity<?> setAdmin(@PathVariable String username){
+        userService.updateUserRole(username, "ADMIN");
     return ResponseEntity.ok("Rol actualizado a ADMIN");
     }
 
     //Actualizar a cajero
-    @PutMapping("/admin/setCajero/{id}")
-    public ResponseEntity<?> setCajero(@PathVariable Integer id){
-        userService.updateUserRole(id, "CAJERO");
+    @PutMapping("/admin/setCajero/{username}")
+    public ResponseEntity<?> setCajero(@PathVariable String username){
+        userService.updateUserRole(username, "CAJERO");
     return ResponseEntity.ok("Rol actualizado a CAJERO");
     }
 
     //Actualizar a bodega
-    @PutMapping("/admin/setBodega/{id}")
-    public ResponseEntity<?> setBodega(@PathVariable Integer id){
-        userService.updateUserRole(id, "BODEGA");
+    @PutMapping("/admin/setBodega/{username}")
+    public ResponseEntity<?> setBodega(@PathVariable String username){
+        userService.updateUserRole(username, "BODEGA");
     return ResponseEntity.ok("Rol actualizado a BODEGA");
     }
 
     //Actualizar a usuario
-    @PutMapping("/admin/setUsuario/{id}")
-    public ResponseEntity<?> setUsuario(@PathVariable Integer id){
-        userService.updateUserRole(id, "USER");
+    @PutMapping("/admin/setUsuario/{username}")
+    public ResponseEntity<?> setUsuario(@PathVariable String username){
+        userService.updateUserRole(username, "USER");
     return ResponseEntity.ok("Rol actualizado a USUARIO");
     }
 

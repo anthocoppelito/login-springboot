@@ -1,6 +1,8 @@
 package antho.demo_jwt.User;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -43,6 +45,19 @@ public class UserService {
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
     }
 
+    public List<UserDTO> getAllUsers() {
+        return userRepository.findAll().stream()
+            .map(user -> new UserDTO(
+                user.getId(),
+                user.getUsername(),
+                user.getLastname(),
+                user.getFirstname(),
+                user.getCountry(),
+                user.getRole().name()
+            ))
+            .collect(Collectors.toList());
+    }       
+
     public UserDTO updateUser(Integer id, UpdateUserDTO updateUserDTO) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found"));
@@ -67,8 +82,8 @@ public class UserService {
     }
 
     @Transactional
-    public void updateUserRole(Integer id, String role) {
-        User user = userRepository.findById(id)
+    public void updateUserRole(String username, String role) {
+        User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
         user.setRole(Role.valueOf(role)); // Cambiar el rol del usuario
         userRepository.save(user); // Guardar los cambios
