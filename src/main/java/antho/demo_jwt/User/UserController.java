@@ -54,7 +54,7 @@ public class UserController {
         UserDTO updatedUser = userService.updateUser(id, updateUserDTO);
         return ResponseEntity.ok(updatedUser);
     }
-
+    //mediante username:
     //Actualizar a admin
     @PutMapping("/admin/setAdmin/{username}")
     public ResponseEntity<?> setAdmin(@PathVariable String username){
