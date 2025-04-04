@@ -58,8 +58,8 @@ public class UserService {
             .collect(Collectors.toList());
     }       
 
-    public UserDTO updateUser(Integer id, UpdateUserDTO updateUserDTO) {
-        User user = userRepository.findById(id)
+    public UserDTO updateUser(String username, UpdateUserDTO updateUserDTO) {
+        User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found"));
     
         // Actualizar los campos permitidos

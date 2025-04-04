@@ -48,10 +48,10 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
-    //Actualizar datos
-    @PutMapping("/admin/{id}")
-    public ResponseEntity<UserDTO> updateUser(@PathVariable Integer id, @RequestBody UpdateUserDTO updateUserDTO) {
-        UserDTO updatedUser = userService.updateUser(id, updateUserDTO);
+    //Actualizar datos por username
+    @PutMapping("/admin/{username}")
+    public ResponseEntity<UserDTO> updateUser(@PathVariable String username, @RequestBody UpdateUserDTO updateUserDTO) {
+        UserDTO updatedUser = userService.updateUser(username, updateUserDTO);
         return ResponseEntity.ok(updatedUser);
     }
     //mediante username:
