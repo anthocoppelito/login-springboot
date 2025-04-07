@@ -10,6 +10,7 @@ import antho.demo_jwt.Jwt.JwtService;
 import antho.demo_jwt.User.Role;
 import antho.demo_jwt.User.User;
 import antho.demo_jwt.User.UserRepository;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -31,7 +32,11 @@ public class AuthService {
             .build();
     }
 
-    public AuthResponse register(RegisterRequest request) {
+    public AuthResponse register(@Valid RegisterRequest request) {
+
+        if (request.getPassword().length() > 40) {
+            throw new IllegalArgumentException("La contraseña no puede tener más de 40 caracteres");
+        }
 
         User user = User.builder()
             .username(request.getUsername())
