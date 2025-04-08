@@ -82,6 +82,12 @@ public class UserController {
         userService.updateUserRole(username, "USER");
     return ResponseEntity.ok("Rol actualizado a USUARIO");
     }
+    //Verificar si existe el usuario
+    @GetMapping("/admin/exists/{username}")
+    public ResponseEntity<Boolean> checkIfUserExists(@PathVariable String username) {
+        boolean exists = userService.userExists(username);
+    return ResponseEntity.ok(exists);
+    }
 
     
 
