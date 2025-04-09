@@ -82,11 +82,19 @@ public class UserController {
         userService.updateUserRole(username, "USER");
     return ResponseEntity.ok("Rol actualizado a USUARIO");
     }
+
     //Verificar si existe el usuario
     @GetMapping("/admin/exists/{username}")
     public ResponseEntity<Boolean> checkIfUserExists(@PathVariable String username) {
         boolean exists = userService.userExists(username);
     return ResponseEntity.ok(exists);
+    }
+
+    //Realizar busqueda por cualquiera de los campos
+    @GetMapping("/admin/search/{searchTerm}")
+    public ResponseEntity<List<UserDTO>> searchUsers(@PathVariable String searchTerm) {
+        List<UserDTO> users = userService.searchUsers(searchTerm);
+        return ResponseEntity.ok(users);
     }
 
     

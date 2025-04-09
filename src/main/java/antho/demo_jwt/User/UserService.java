@@ -93,5 +93,22 @@ public class UserService {
         return userRepository.findByUsername(username).isPresent();
     }
 
+    public List<UserDTO> searchUsers(String searchTerm) {
+        return userRepository.findAll().stream()
+                .filter(user -> user.getUsername().toLowerCase().contains(searchTerm.toLowerCase()) ||
+                        user.getLastname().toLowerCase().contains(searchTerm.toLowerCase()) ||
+                        user.getFirstname().toLowerCase().contains(searchTerm.toLowerCase()) ||
+                        user.getCountry().toLowerCase().contains(searchTerm.toLowerCase()))
+                .map(user -> new UserDTO(
+                        user.getId(),
+                        user.getUsername(),
+                        user.getLastname(),
+                        user.getFirstname(),
+                        user.getCountry(),
+                        user.getRole().name()
+                ))
+                .collect(Collectors.toList());
+    }
+
 
 }
