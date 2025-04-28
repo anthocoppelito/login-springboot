@@ -11,14 +11,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductRegister {
+public class ProductStock {
     @NotBlank(message = "Se requiere un nombre del producto")
     @Size(min = 3, max = 30, message = "El nombre del producto debe tener entre 3 y 30 caracteres")
     String productname;
-    String description;
-    String category;
-    String image;
-    Integer price;
     Integer stock;
 }
 

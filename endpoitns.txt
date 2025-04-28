@@ -1,0 +1,259 @@
+endpoints:
+
+
+http://localhost:8080/auth/test
+[GET]
+
+AUTHORIZATION: no
+
+Resultado:
+HEllo
+
+-------------------------------------------------------
+
+http://localhost:8080/auth/register
+[POST]
+
+{
+    "username": "bodega@coppel.com",
+    "password": "123456",
+    "lastname": "apellido bodega",
+    "firstname": "nombre bodega",
+    "country": "México"
+}
+
+AUTHORIZATION: no
+---------------------------------------------------
+
+http://localhost:8080/api/v1/demo
+[POST]
+
+AUTHORIZATION: bearer token
+---------------------------------------------------
+
+http://localhost:8080/auth/login
+[POST]
+
+AUTHORIZATION: no
+
+-----------------------------------------------------
+
+http://localhost:8080/api/v1/user/public/1
+[GET]
+
+AUTHORIZATION: no
+
+Ejemplo resultado
+{
+    "id": 1,
+    "username": "antho@coppel.com",
+    "lastname": "vega",
+    "firstname": "antonio",
+    "country": "México",
+    "role": "USER"
+}
+
+----------------------------------------------------
+
+http://localhost:8080/api/v1/user/admin/102
+[GET]
+
+AUTHORIZATION: bearer token
+
+Ejemplo resultado
+
+{
+    "id": 102,
+    "username": "admin@coppel.com",
+    "lastname": "Admin nuevo",
+    "firstname": "Apellido de admin",
+    "country": "España",
+    "password": "$2a$10$LR1dFnqoSh2pRjwHPIrsfeftnDzwIJIyorQ1WqVzXBdh3qD5XPRVS",
+    "role": "ADMIN",
+    "enabled": true,
+    "accountNonExpired": true,
+    "credentialsNonExpired": true,
+    "accountNonLocked": true,
+    "authorities": [
+        {
+            "authority": "ADMIN"
+        }
+    ]
+}
+
+-------------------------------------------------------
+
+http://localhost:8080/api/v1/user/admin/bodega@coppel.com
+[PUT] 
+
+AUTHORIZATION: bearer token
+
+ejemplo
+
+{
+    "lastname": "Apellido bodega2",
+    "firstname": "Bodega",
+    "country": "México"
+}
+
+ejemplo respuesta:
+{
+    "id": 3,
+    "username": "bodega@coppel.com",
+    "lastname": "Apellido bodega2",
+    "firstname": "Bodega",
+    "country": "México",
+    "role": "BODEGA"
+}
+
+----------------------------------------------------------
+http://localhost:8080/api/v1/user/admin/setBodega/{username}
+http://localhost:8080/api/v1/user/admin/setAdmin/{username}
+http://localhost:8080/api/v1/user/admin/setUsuario/{username}
+http://localhost:8080/api/v1/user/admin/setCajero/{username}
+
+http://localhost:8080/api/v1/user/admin/setCajero/
+[PUT]
+
+AUTHORIZATION: bearer token
+
+-----------------------------------------------------------
+
+http://localhost:8080/api/v1/user/public/username/bodega@coppel.com
+[GET]
+
+
+ejemplo respuesta:
+{
+    "id": 3,
+    "username": "bodega@coppel.com",
+    "lastname": "Apellido bodega",
+    "firstname": "Bodega",
+    "country": "México",
+    "role": "BODEGA"
+}
+
+----------------------------------------------------------------------
+http://localhost:8080/api/v1/user/public/username/all
+[GET]
+ALL - conseguir todos los usuarios
+
+ejemplo respuesta:
+
+[
+    {
+        "id": 1,
+        "username": "admin@coppel.com",
+        "lastname": "vega",
+        "firstname": "antonio",
+        "country": "México",
+        "role": "ADMIN"
+    },
+    {
+        "id": 2,
+        "username": "user@coppel.com",
+        "lastname": "Apellido usuario",
+        "firstname": "Usuario",
+        "country": "México",
+        "role": "USER"
+    },
+    {
+        "id": 3,
+        "username": "bodega@coppel.com",
+        "lastname": "Apellido bodega",
+        "firstname": "Bodega",
+        "country": "México",
+        "role": "BODEGA"
+    },
+    {
+        "id": 4,
+        "username": "cajero@coppel.com",
+        "lastname": "Apellido cajero",
+        "firstname": "Cajero",
+        "country": "México",
+        "role": "CAJERO"
+    },
+    {
+        "id": 52,
+        "username": "admin2@coppel.com",
+        "lastname": "Apellido de admin",
+        "firstname": "Admin numero dos",
+        "country": "China",
+        "role": "ADMIN"
+    }
+]
+
+----------------------------------------------------------
+Verificar si existe el usuario
+GET
+
+AUTHORIZATION: bearer token
+
+http://localhost:8080/api/v1/user/admin/exists/admine@coppel.com
+
+ejemplo resultado:
+false
+
+
+-----------------------------------------------------------
+CONSEGUIR USUARIO POR BUSQUEDA
+GET
+
+AUTHORIZATION: bearer token
+http://localhost:8080/api/v1/user/admin/search/{searchTerm}
+
+ejemplo resultado:
+
+
+--------------------------------------------------------------
+PRODUCTS
+
+Conseguir todos
+AUTHORIZATION: bearer token
+
+http://localhost:8080/api/v1/product/bodega/all
+
+[
+    {
+        "id": 1,
+        "productname": "Mueble01",
+        "description": "Mueble color cafe marca prueba",
+        "category": "Muebleria",
+        "image": null,
+        "price": 20,
+        "stock": 5
+    }
+]
+
+------------------------------------------------------------
+Registrar producto
+AUTH: bearer token
+
+http://localhost:8080/api/v1/product/bodega/register
+
+{
+    "productname": "Mueble01",
+    "description": "Mueble color cafe marca prueba",
+    "category": "Muebleria",
+    "price": 20,
+    "stock": 5
+
+
+}
+
+-------------------------------------------------------
+me quede por revisar si funciona products con sales....
+
+
+select * from users
+
+select * from products
+
+DELETE FROM users
+WHERE LENGTH(username) < 6;
+
+delete from users
+where username='11111111111111z@k223309090930432984093289fisodkfposdfopkspodfkspokfposdkfpoksp'
+
+
+
