@@ -20,9 +20,9 @@ public class SaleService {
     private final ProductService  productService;
 
 
-    public List<SaleDTO> getAllSales() {
+    public List<Sale> getAllSales() {
         return saleRepository.findAll().stream()
-            .map(sale -> new SaleDTO(
+            .map(sale -> new Sale(
                 sale.getId(), 
                 sale.getProduct(), 
                 sale.getAmount(),
@@ -31,15 +31,8 @@ public class SaleService {
                 ))
                 .collect(Collectors.toList());   
     }
-    //registrar venta sin checar inventario - solo para pruebas
-    public void registerSale(SaleDTO saleDTO) {
-        Sale sale = Sale.builder()
-            .product(saleDTO.getProduct())
-            .amount(saleDTO.getAmount())
-            .build();
-        // Guardar venta en la base de datos
-        saleRepository.save(sale);
-    }
+
+  
 
     //hacer venta de un producto con stock
     public void makeSale(RegisterSale registerSale) {

@@ -21,9 +21,9 @@ public class SaleController {
 
     //Obtener todas las ventas
     @GetMapping("/cajero/all")
-    public ResponseEntity<List<SaleDTO>> getAllSales() {
-        List<SaleDTO> salesDTO = saleService.getAllSales();
-        return ResponseEntity.ok(salesDTO);
+    public ResponseEntity<List<Sale>> getAllSales() {
+        List<Sale> sale = saleService.getAllSales();
+        return ResponseEntity.ok(sale);
     }
 
     //Registrar una venta

@@ -207,7 +207,7 @@ ejemplo resultado:
 
 --------------------------------------------------------------
 PRODUCTS
-
+GET
 Conseguir todos
 AUTHORIZATION: bearer token
 
@@ -227,6 +227,7 @@ http://localhost:8080/api/v1/product/bodega/all
 
 ------------------------------------------------------------
 Registrar producto
+POST
 AUTH: bearer token
 
 http://localhost:8080/api/v1/product/bodega/register
@@ -242,18 +243,74 @@ http://localhost:8080/api/v1/product/bodega/register
 }
 
 -------------------------------------------------------
-me quede por revisar si funciona products con sales....
+Aumentar stock
+PUT
+AUTH: bearer token
+http://localhost:8080/api/v1/product/bodega/addstock
+
+{
+	"productname": "Mueble01",
+	"stock": 1
+}
 
 
-select * from users
 
-select * from products
 
-DELETE FROM users
-WHERE LENGTH(username) < 6;
+-------------------------------------------------
+Disminuir stock
+PUT
+AUTH: bearer token
+http://localhost:8080/api/v1/product/bodega/removestock
 
-delete from users
-where username='11111111111111z@k223309090930432984093289fisodkfposdfopkspodfkspokfposdkfpoksp'
+{
+	"productname": "Mueble01",
+	"stock": 1
+}
+
+-------------------------------------------------
+
+Conseguir todas las compras de un solo producto
+GET
+AUTH: bearer token
+http://localhost:8080/api/v1/sale/cajero/all
+
+
+
+-------------------------------------------------
+
+Registrar compra de un solo producto
+POST
+AUTH: bearer token
+http://localhost:8080/api/v1/sale/cajero/register
+{
+	"productname": "Mueble01",
+	"quantity": 2
+	
+}
+
+-----------------------------------------------
+registrar compra con multiples productos
+POST
+AUTH: bearer token
+http://localhost:8080/api/v1/sales/cajero/register
+
+{
+  "salesList": [
+    {
+      "productname": "Mueble01",
+      "quantity": 9
+    },
+    {
+      "productname": "Mueble02",
+      "quantity": 1
+    }
+  ]
+}
+----------------------------------------------
+conseguir compras con multiples productos
+GET
+AUTH: bearer token
+http://localhost:8080/api/v1/sales/cajero/all
 
 
 
