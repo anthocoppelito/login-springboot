@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -48,6 +49,13 @@ public class ProductController {
     public ResponseEntity<?> removeStock(@Valid @RequestBody ProductStock request){
         productService.removeStock(request);
         return ResponseEntity.ok("Stock actualizado");
+    }
+
+    //Verificar si existe el usuario
+    @GetMapping("/bodega/exists/{productname}")
+    public ResponseEntity<Boolean> checkIfProductExists(@PathVariable String productname) {
+        boolean exists = productService.productExists(productname);
+    return ResponseEntity.ok(exists);
     }
 
 
