@@ -20,6 +20,7 @@ public class SaleService {
     private final ProductService  productService;
 
 
+    //conseguir todas las ventas
     public List<Sale> getAllSales() {
         return saleRepository.findAll().stream()
             .map(sale -> new Sale(
@@ -75,6 +76,8 @@ public class SaleService {
         }
         
     }
+
+    
 
 
 }

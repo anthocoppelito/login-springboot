@@ -4,12 +4,14 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import antho.demo_jwt.Product.ProductRegister;
+import antho.demo_jwt.Sale.Sale;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -26,6 +28,14 @@ public class SalesController {
         List<Sales> sales = salesService.getAllSales();
         return ResponseEntity.ok(sales);
     }
+
+    //Obtener una venta por id
+    @GetMapping("/cajero/sale/{id}")
+    public ResponseEntity<Sales> getSaleById(@PathVariable Integer id) {
+        Sales sales = salesService.getSaleById(id);
+        return ResponseEntity.ok(sales);
+    }
+
 
     //registrar producto
     @PostMapping(value="/cajero/register")

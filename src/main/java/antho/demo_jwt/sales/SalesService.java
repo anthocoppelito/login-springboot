@@ -68,4 +68,9 @@ public class SalesService {
     public List<Sales> getAllSales() {
         return salesRepository.findAll();
     }
+
+    //conseguir datos de venta por id
+    public Sales getSaleById(Integer id) {
+        return salesRepository.findByid(id).orElseThrow(() -> new RuntimeException("No se encontró la venta con id: " + id));
+    }
 }

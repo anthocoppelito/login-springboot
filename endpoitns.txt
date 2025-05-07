@@ -323,5 +323,21 @@ GET
 AUTH: bearer token
 http://localhost:8080/api/v1/sales/cajero/all
 
+--------------------------------------------
+conseguir una sola venta (lista) por id
+GET
+AUTH: bearer token
+http://localhost:8080/api/v1/sales/cajero/sale/{id}
+
+-------------------------------------------
+07/05/25
+pensaba en endpoint que envie el productname y el la cantidad y regrese
+precio unitario y total
+
+en el flujo del front primero:
+revisar si hay el stock pedido.
+si hay ejecutar el endpoint para checar precio y total,
+si no, mandar, no hay suficiente stock o un false/true depende la respuesta
+
 
 
