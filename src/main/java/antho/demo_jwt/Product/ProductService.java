@@ -1,6 +1,8 @@
 package antho.demo_jwt.Product;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -125,6 +127,26 @@ public class ProductService {
     public Product getProductEntityByName(String productName) {
         return productRepository.findByProductname(productName)
             .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
+    }
+
+    //obtiene el productname y la cantidad y regresa el precio unitario y el total(precio unitario * cantidad). antes revisa si hay stock
+    //si no hay stock, lanza una excepcion
+    public Map<String,Double> getProductPrice(String productname, Integer amount) {
+        Product product = productRepository.findByProductname(productname)
+                .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
+        if (product.getStock() >= amount) {
+            double unitPrice = product.getPrice();
+            double totalPrice = unitPrice * amount;
+
+            // Crear un mapa con los valores
+            Map<String, Double> priceMap = new HashMap<>();
+            priceMap.put("unitPrice", unitPrice);
+            priceMap.put("totalPrice", totalPrice);
+
+            return priceMap;
+        } else {
+            throw new RuntimeException("No hay stock disponible");
+        }
     }
 
     

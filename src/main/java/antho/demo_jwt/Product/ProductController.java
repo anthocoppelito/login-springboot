@@ -1,6 +1,7 @@
 package antho.demo_jwt.Product;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -51,11 +52,18 @@ public class ProductController {
         return ResponseEntity.ok("Stock actualizado");
     }
 
-    //Verificar si existe el usuario
+    //Verificar si existe el producto
     @GetMapping("/bodega/exists/{productname}")
     public ResponseEntity<Boolean> checkIfProductExists(@PathVariable String productname) {
         boolean exists = productService.productExists(productname);
     return ResponseEntity.ok(exists);
+    }
+
+    //recibir productname y cantidad y regrese el precio unitario y el total(precio unitario * cantidad). antes revisa si hay stock
+    @GetMapping("/bodega/price/{productname}/{amount}")
+    public ResponseEntity<Map<String,Double>> getProductPrice(@PathVariable String productname, @PathVariable Integer amount) {
+        Map<String,Double> productPrice = productService.getProductPrice(productname, amount);
+        return ResponseEntity.ok(productPrice);
     }
 
 
