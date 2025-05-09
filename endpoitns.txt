@@ -328,16 +328,23 @@ conseguir una sola venta (lista) por id
 GET
 AUTH: bearer token
 http://localhost:8080/api/v1/sales/cajero/sale/{id}
-
+	
 -------------------------------------------
-07/05/25
-pensaba en endpoint que envie el productname y el la cantidad y regrese
-precio unitario y total
+Conseguir precio unitario y total según la cantidad del producto
 
-en el flujo del front primero:
-revisar si hay el stock pedido.
-si hay ejecutar el endpoint para checar precio y total,
-si no, mandar, no hay suficiente stock o un false/true depende la respuesta
+GET
+AUTH: bearer token
+mera consulta, no registra nada, trae de regreso el precio unitario del producto y el precio total (precio unitario producto * cantidad)
+http://localhost:8080/api/v1/product/bodega/price/{productname}/{amount}
+
+{
+    "unitPrice": 100.0,
+    "totalPrice": 100.0
+}
+
+
+
+
 
 
 
