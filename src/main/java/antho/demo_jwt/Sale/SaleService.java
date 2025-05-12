@@ -6,8 +6,6 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import antho.demo_jwt.Product.Product;
-import antho.demo_jwt.Product.ProductDTO;
-import antho.demo_jwt.Product.ProductRepository;
 import antho.demo_jwt.Product.ProductService;
 import antho.demo_jwt.Product.ProductStock;
 import lombok.RequiredArgsConstructor;

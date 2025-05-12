@@ -343,8 +343,22 @@ http://localhost:8080/api/v1/product/bodega/price/{productname}/{amount}
 }
 
 
+-------------------------------------------------------------------------------------
+12/05/2025
+http://localhost:8080/api/v2/
 
 
 
+
+
+http://localhost:8080/api/v2/marcas
+
+
+poner una imagen a la izquierda al inicio
+
+
+manejo de llantas para bodega
+creación de tablas
+y servicio para cajero
 
 

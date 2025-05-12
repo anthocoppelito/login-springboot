@@ -4,7 +4,6 @@ import java.util.List;
 
 import antho.demo_jwt.Sale.SaleDTO;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data

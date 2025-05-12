@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import antho.demo_jwt.Product.Product;
 import antho.demo_jwt.Product.ProductService;
-import antho.demo_jwt.Product.ProductStock;
 import antho.demo_jwt.Sale.RegisterSale;
 import antho.demo_jwt.Sale.Sale;
 import antho.demo_jwt.Sale.SaleService;

@@ -1,6 +1,6 @@
 package antho.demo_jwt.Sale;
 
-import antho.demo_jwt.Product.Product;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
