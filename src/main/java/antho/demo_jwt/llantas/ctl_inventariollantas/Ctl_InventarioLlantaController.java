@@ -25,7 +25,7 @@ public class Ctl_InventarioLlantaController {
     }
     //registrar inventario de llanta
     @PostMapping(value = "/register")
-    public ResponseEntity<?> registerInventarioLlanta(@RequestBody Ctl_InventarioLlanta request) {
+    public ResponseEntity<?> registerInventarioLlanta(@RequestBody Ctl_InventarioLlantaDTO request) {
         ctlInventarioLlantaService.registerInventarioLlanta(request);
         return ResponseEntity.ok("Inventario de llanta registrado");
     }

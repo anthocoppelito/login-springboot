@@ -25,7 +25,7 @@ public class Ctl_MovimientoInventarioController {
     }
     //registrar movimiento de inventario
     @PostMapping(value = "/register")
-    public ResponseEntity<?> registerMovimientoInventario(@RequestBody Ctl_MovimientoInventario request) {
+    public ResponseEntity<?> registerMovimientoInventario(@RequestBody Ctl_MovimientoInventarioDTO request) {
         ctlMovimientoInventarioService.registerMovimientoInventario(request);
         return ResponseEntity.ok("Movimiento de inventario registrado");
     }

@@ -1,0 +1,152 @@
+---AUTH---
+Registrar usuario
+[POST][NO AUTH]
+http://localhost:8080/auth/register
+
+{
+"username": "admin@coppel.com",
+  "password": "123456",
+  "firstname": "Antonio",
+  "lastname": "Vega",
+  "country": "México"
+}
+
+Loguear usuario
+[POST][NO AUTH]
+http://localhost:8080/auth/login
+{
+    "username": "admin@coppel.com",
+    "password": "123456"
+}
+
+Cambiar rol
+[PUT][AUTH]
+SETROLE: setAdmin/setUser/setBodega/SetCajero
+http://localhost:8080/api/v1/user/admin/setAdmin/admin@coppel.com
+
+--------------------------------------------------------------
+
+---API V2 ENDPOINTS---
+http://localhost:8080/api/v2
+[BEARER TOKEN]
+
+--------------------------------------------------------------
+Para todos:
+[GET]
+Conseguir todos los registros /all
+
+[POST]
+Registrar /register
+--------------------------------------------------------------
+
+marcas
+
+http://localhost:8080/api/v2/marcas
+
+Integer id_marca;
+String nomMarcas;
+Date fec_alta;
+Boolean opc_activo;
+
+
+{
+    "nomMarcas": "Marca02",
+    "fec_alta": "2025-05-13",
+    "opc_activo": true
+}
+
+
+--------------------------------------------------------------
+modelos
+
+http://localhost:8080/api/v2/modelos
+
+Integer id_modelo;
+String nomModelos;
+Date fec_alta;
+Boolean opc_activo;
+
+{
+    "nomModelos": "Modelo01",
+    "fec_alta": "2025-05-13",
+    "opc_activo": true
+}
+--------------------------------------------------------------
+
+movimientosinventario
+
+http://localhost:8080/api/v2/movimientosinventario
+
+Integer idMovimientoinventario;
+String nomMovimientoinventario;
+Date fec_alta;
+Boolean opc_activo;
+
+{
+    "nomMovimientoinventario": "MovimientoInventario01",
+    "fec_alta": "2025-05-13",
+    "opc_activo": true
+}
+
+--------------------------------------------------------------
+rines
+
+http://localhost:8080/api/v2/rines
+
+Integer id_rin;
+String nomRin;
+Date fec_alta;
+Boolean opc_activo;
+
+{
+    "nomRin": "NombreRin01",
+    "fec_alta": "2025-05-13",
+    "opc_activo": true
+}
+
+
+
+--------------------------------------------------------------
+ctl_inventariollantas
+ revisar: all
+http://localhost:8080/api/v2/inventarioLlanta
+
+Integer idLlanta;
+Integer idMarca;
+Integer idModelo;
+Integer idRin;
+Double num_preciobasico;
+Date fec_alta;
+Integer num_existencia;
+
+{
+    "id_marca":1,
+    "id_modelo":1,
+    "id_rin":1,
+    "num_preciobasico": 150,
+    "fec_alta": "2025-05-13",
+    "num_existencia": 300
+}
+
+--------------------------------------------------------------
+ctl_movimientosinventario
+
+http://localhost:8080/api/v2/movimientoInventario
+
+Integer idMovimientoinventario;
+Integer idLlanta;
+Double num_precio;
+Date fec_movimiento;
+Integer num_empleado;
+Boolean opc_activo;
+
+{
+    "id_llanta":152,
+    "num_precio": 150,
+    "fec_movimiento": "2025-05-13",
+    "num_empleado":1,
+    "opc_activo":true
+}
+
+
+

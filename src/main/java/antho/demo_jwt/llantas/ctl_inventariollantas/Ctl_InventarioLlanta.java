@@ -45,9 +45,6 @@ public class Ctl_InventarioLlanta {
     Double num_preciobasico;
     Date fec_alta;
     Integer num_existencia;
-    public Object getNom_inventario_llanta() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getNom_inventario_llanta'");
-    }
+
 
 }
