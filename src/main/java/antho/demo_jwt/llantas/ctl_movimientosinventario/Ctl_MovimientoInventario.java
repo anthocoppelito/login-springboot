@@ -1,7 +1,6 @@
 package antho.demo_jwt.llantas.ctl_movimientosinventario;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 import antho.demo_jwt.llantas.ctl_inventariollantas.Ctl_InventarioLlanta;
 import jakarta.persistence.Column;

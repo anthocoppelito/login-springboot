@@ -1,7 +1,6 @@
 package antho.demo_jwt.llantas.ctl_inventariollantas;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 import antho.demo_jwt.llantas.cat_marcas.Marca;
 import antho.demo_jwt.llantas.cat_modelos.Modelo;

@@ -1,7 +1,6 @@
 package antho.demo_jwt.llantas.cat_movimientosinventario;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
