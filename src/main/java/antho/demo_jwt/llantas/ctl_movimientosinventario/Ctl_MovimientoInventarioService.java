@@ -1,5 +1,7 @@
 package antho.demo_jwt.llantas.ctl_movimientosinventario;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -27,9 +29,9 @@ public class Ctl_MovimientoInventarioService {
         Ctl_MovimientoInventario movimiento = Ctl_MovimientoInventario.builder()
             .llanta(llanta)
             .num_precio(request.num_precio)
-            .fec_movimiento(request.fec_movimiento)
+            .fec_movimiento(LocalDateTime.now(ZoneId.of("America/Mazatlan")))
             .num_empleado(request.num_empleado)
-            .opc_activo(request.opc_activo)
+            .opc_activo(true)
             .build();     
 
         //guardar

@@ -1,5 +1,7 @@
 package antho.demo_jwt.llantas.ctl_inventariollantas;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -41,7 +43,7 @@ public class Ctl_InventarioLlantaService {
             .modelo(modelo)
             .rines(rines)
             .num_preciobasico(request.num_preciobasico)
-            .fec_alta(request.fec_alta)
+            .fec_alta(LocalDateTime.now(ZoneId.of("America/Mazatlan")))
             .num_existencia(request.num_existencia)
             .build();
 

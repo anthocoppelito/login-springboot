@@ -1,5 +1,6 @@
 package antho.demo_jwt.llantas.ctl_inventariollantas;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import antho.demo_jwt.llantas.cat_marcas.Marca;
@@ -43,7 +44,7 @@ public class Ctl_InventarioLlanta {
     Rines rines;
 
     Double num_preciobasico;
-    Date fec_alta;
+    LocalDateTime fec_alta;
     Integer num_existencia;
 
 

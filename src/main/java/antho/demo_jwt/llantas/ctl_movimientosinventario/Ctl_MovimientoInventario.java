@@ -1,5 +1,6 @@
 package antho.demo_jwt.llantas.ctl_movimientosinventario;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import antho.demo_jwt.llantas.ctl_inventariollantas.Ctl_InventarioLlanta;
@@ -33,7 +34,7 @@ public class Ctl_MovimientoInventario {
     Ctl_InventarioLlanta llanta;
 
     Double num_precio;
-    Date fec_movimiento;
+    LocalDateTime fec_movimiento;
 
     Integer num_empleado;
     Boolean opc_activo;

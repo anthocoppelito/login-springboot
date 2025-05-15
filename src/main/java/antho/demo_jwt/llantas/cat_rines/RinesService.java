@@ -1,5 +1,7 @@
 package antho.demo_jwt.llantas.cat_rines;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -20,6 +22,13 @@ public class RinesService {
         // Revisa si existe
         if (rinesRepository.findByNomRin(request.getNomRin()).isPresent()) {
             throw new IllegalStateException("Ese rin ya existe");
+        }
+
+        if (request.getFec_alta() == null) {
+            request.setFec_alta(LocalDateTime.now(ZoneId.of("America/Mazatlan")));
+        }
+        if (request.getOpc_activo() == null) {
+            request.setOpc_activo(true);
         }
         // Guardar
         rinesRepository.save(request);

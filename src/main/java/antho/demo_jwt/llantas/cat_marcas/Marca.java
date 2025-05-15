@@ -1,5 +1,6 @@
 package antho.demo_jwt.llantas.cat_marcas;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import jakarta.persistence.Column;
@@ -26,6 +27,6 @@ public class Marca {
     Integer id_marca;
     @Column(nullable = false)
     String nomMarcas;
-    Date fec_alta;
+    LocalDateTime fec_alta;
     Boolean opc_activo;
 }

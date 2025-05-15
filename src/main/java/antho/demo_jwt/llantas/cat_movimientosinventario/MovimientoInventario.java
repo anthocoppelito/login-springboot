@@ -1,5 +1,6 @@
 package antho.demo_jwt.llantas.cat_movimientosinventario;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import jakarta.persistence.Column;
@@ -24,6 +25,6 @@ public class MovimientoInventario {
     @Column(name = "id_movimientoinventario")
     Integer idMovimientoinventario;
     String nomMovimientoinventario;
-    Date fec_alta;
+    LocalDateTime fec_alta;
     Boolean opc_activo;
 }

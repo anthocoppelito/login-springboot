@@ -1,5 +1,6 @@
 package antho.demo_jwt.llantas.cat_modelos;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import jakarta.persistence.Column;
@@ -24,6 +25,6 @@ public class Modelo {
     @Column(name = "id_modelo")
     Integer id_modelo;
     String nomModelos;
-    Date fec_alta;
+    LocalDateTime fec_alta;
     Boolean opc_activo;
 }

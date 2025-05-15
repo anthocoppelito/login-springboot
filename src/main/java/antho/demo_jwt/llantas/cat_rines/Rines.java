@@ -1,5 +1,6 @@
 package antho.demo_jwt.llantas.cat_rines;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import jakarta.persistence.Column;
@@ -24,7 +25,7 @@ public class Rines {
     @Column(name = "id_rin")
     Integer id_rin;
     String nomRin;
-    Date fec_alta;
+    LocalDateTime fec_alta;
     Boolean opc_activo;
 
 }
