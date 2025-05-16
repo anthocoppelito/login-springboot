@@ -2,7 +2,9 @@ package antho.demo_jwt.llantas.ctl_inventariollantas;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -50,6 +52,82 @@ public class Ctl_InventarioLlantaService {
         //se guarda 
         ctlInventarioLlantaRepository.save(inventario);
 
-    }   
+    }
+    
+    public boolean llantaExists(Integer llanta) {
+        // Verifica si la llanta existe
+        return ctlInventarioLlantaRepository.findById(llanta).isPresent();
+    }
+
+    //checkStock
+    public boolean checkStock(Integer id, Integer amount) {
+        //verifica si la llanta existe
+        if (!llantaExists(id)) {
+            throw new RuntimeException("Llanta no registrada");
+        }
+
+        //verifica si la cantidad a comprar es mayor a 0
+        if (amount <= 0) {
+            throw new RuntimeException("La cantidad a comprar debe ser mayor a 0");
+        }
+
+        // Verifica si la llanta tiene suficiente stock
+        Ctl_InventarioLlanta llanta = ctlInventarioLlantaRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Llanta no encontrada"));
+        if (llanta.getNum_existencia() >= amount) {
+            return true;
+        }else{
+            throw new RuntimeException("No hay suficiente stock para la llanta: " + id);
+        }
+    }
+
+    public void removeStock(Integer id, Integer quantity) {
+        //verifica si la llanta existe
+        if (!llantaExists(id)) {
+            throw new RuntimeException("Llanta no registrada");
+        }
+
+        //verifica si la cantidad a comprar es mayor a 0
+        if (quantity <= 0) {
+            throw new RuntimeException("La cantidad a comprar debe ser mayor a 0");
+        }
+
+        // Verifica si la llanta tiene suficiente stock
+        Ctl_InventarioLlanta llanta = ctlInventarioLlantaRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Llanta no encontrada"));
+        if (llanta.getNum_existencia() >= quantity) {
+            llanta.setNum_existencia(llanta.getNum_existencia() - quantity);
+            ctlInventarioLlantaRepository.save(llanta);
+        } else {
+            throw new RuntimeException("No hay suficiente stock para la llanta: " + id);
+        }
+    }
+
+    public Ctl_InventarioLlanta getLlantaEntityById(Integer id) {
+        return ctlInventarioLlantaRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Llanta no encontrada"));
+    }
+
+    //obtiene el id de la llanta y la cantidad y regresa el precio unitario y el total (precio unitario * cantidad). antes revisa si hay stock
+    //si no hay stock, lanza una excepcion
+    public Map<String, Double> getLlantaPrice(Integer id, Integer amount) {
+        Ctl_InventarioLlanta llanta = ctlInventarioLlantaRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Llanta no encontrada"));
+        if (llanta.getNum_existencia() >= amount) {
+            double unitPrice = llanta.getNum_preciobasico();
+            double totalPrice = unitPrice * amount;
+            
+            //Crear un mapa con los valores
+            Map<String, Double> priceMap = new HashMap<>();
+            priceMap.put("unitPrice", unitPrice);
+            priceMap.put("totalPrice", totalPrice);
+            return priceMap;
+        } else {
+            throw new RuntimeException("No hay suficiente stock para la llanta: " + id);
+        }
+    }
+
+    
+
 
 }

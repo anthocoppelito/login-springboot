@@ -1,9 +1,11 @@
 package antho.demo_jwt.llantas.ctl_inventariollantas;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +30,13 @@ public class Ctl_InventarioLlantaController {
     public ResponseEntity<?> registerInventarioLlanta(@RequestBody Ctl_InventarioLlantaDTO request) {
         ctlInventarioLlantaService.registerInventarioLlanta(request);
         return ResponseEntity.ok("Inventario de llanta registrado");
+    }
+
+    //recibir id llanta y cantidad y regrese el precio unitario y el total(precio unitario * cantidad). antes revisa si hay stock
+    @GetMapping("/price/{id}/{amount}")
+    public ResponseEntity<Map<String, Double>> getLlantaPrice (@PathVariable Integer id, @PathVariable Integer amount) {
+        Map<String, Double> llantaPrice = ctlInventarioLlantaService.getLlantaPrice(id, amount);
+        return ResponseEntity.ok(llantaPrice);
     }
 
 }
