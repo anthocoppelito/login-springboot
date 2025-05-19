@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import antho.demo_jwt.User.UserDTO;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -38,5 +39,13 @@ public class Ctl_InventarioLlantaController {
         Map<String, Double> llantaPrice = ctlInventarioLlantaService.getLlantaPrice(id, amount);
         return ResponseEntity.ok(llantaPrice);
     }
+
+    //Realizar busqueda por cualquiera de los campos
+    @GetMapping("/search/{searchTerm}")
+    public ResponseEntity<List<Ctl_InventarioLlanta>> searchLlanta(@PathVariable String searchTerm) {
+        List<Ctl_InventarioLlanta> llanta = ctlInventarioLlantaService.searchLlantas(searchTerm);
+        return ResponseEntity.ok(llanta);
+    }
+
 
 }

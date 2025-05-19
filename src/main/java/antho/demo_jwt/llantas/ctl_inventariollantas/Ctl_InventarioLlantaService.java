@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import antho.demo_jwt.llantas.cat_marcas.Marca;
@@ -26,7 +27,7 @@ public class Ctl_InventarioLlantaService {
     private final RinesRepository rinesRepository;
 
     public List<Ctl_InventarioLlanta> getAllInventariosLlanta() {
-        return ctlInventarioLlantaRepository.findAll();
+        return ctlInventarioLlantaRepository.findAll(Sort.by(Sort.Direction.ASC, "idLlanta"));
     }
 
     public void registerInventarioLlanta(Ctl_InventarioLlantaDTO request) {
@@ -125,6 +126,24 @@ public class Ctl_InventarioLlantaService {
         } else {
             throw new RuntimeException("No hay suficiente stock para la llanta: " + id);
         }
+    }
+    //realizar busqueda. como hay posibles datos nulos, solo se hara la busqueda, si no contiene nulos
+    public List<Ctl_InventarioLlanta> searchLlantas(String searchTerm) {
+        return ctlInventarioLlantaRepository.findAll(Sort.by(Sort.Direction.ASC, "idLlanta")).stream()
+            .filter(llanta ->
+            (llanta.getIdLlanta() != null && llanta.getIdLlanta().toString().contains(searchTerm))
+            ||
+            (llanta.getMarca() != null && llanta.getMarca().getNomMarcas() != null &&
+                llanta.getMarca().getNomMarcas().toLowerCase().contains(searchTerm.toLowerCase()))
+            ||
+            (llanta.getModelo() != null && llanta.getModelo().getNomModelos() != null &&
+                llanta.getModelo().getNomModelos().toLowerCase().contains(searchTerm.toLowerCase()))
+            ||
+            (llanta.getRines() != null && llanta.getRines().getNomRin() != null &&
+                llanta.getRines().getNomRin().toLowerCase().contains(searchTerm.toLowerCase()))
+        )
+        .toList();
+        
     }
 
     
