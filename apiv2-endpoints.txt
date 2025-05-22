@@ -37,6 +37,16 @@ Conseguir todos los registros /all
 
 [POST]
 Registrar /register
+
+[PUT]
+editar	/edit
+
+
+[Put]
+Eliminar /delete
+
+desde el servicio se cambiaron los nombres con _ snake_case a camelCase. las bd siguen siendo snake_case
+
 --------------------------------------------------------------
 
 marcas
@@ -48,12 +58,34 @@ String nomMarcas;
 Date fec_alta;
 Boolean opc_activo;
 
+campos:
+
 
 {
     "nomMarcas": "Marca02",
     "fec_alta": "2025-05-13",
     "opc_activo": true
 }
+
+registrar:
+{
+    "nomMarcas": "MarcaPrueba12"
+}
+
+
+editar:
+
+{
+"idMarca": 1,
+"nomMarcas": "asd"
+
+}
+
+eliminar:
+{
+"idMarca": 1
+}
+
 
 
 --------------------------------------------------------------
@@ -70,6 +102,25 @@ Boolean opc_activo;
     "nomModelos": "Modelo01",
     "fec_alta": "2025-05-13",
     "opc_activo": true
+}
+
+registrar:
+{
+    "nomModelos": "ModeloPrueba12"
+}
+
+
+editar:
+
+{
+"idModelo": 1,
+"nomModelos": "asd"
+
+}
+
+eliminar:
+{
+"idModelo": 1
 }
 --------------------------------------------------------------
 
@@ -104,6 +155,24 @@ Boolean opc_activo;
     "opc_activo": true
 }
 
+registrar:
+{
+    "nomRin": "RinPrueba013"
+}
+
+
+editar:
+
+{
+"idRin": 152,
+"nomRin": "asd"
+}
+
+
+eliminar:
+{
+"idRin": 152
+}
 
 
 --------------------------------------------------------------

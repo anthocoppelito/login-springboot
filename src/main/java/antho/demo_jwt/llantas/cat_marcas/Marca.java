@@ -23,9 +23,11 @@ public class Marca {
     @Id
     @GeneratedValue
     @Column(name = "id_marca")
-    Integer id_marca;
+    Integer idMarca;
     @Column(nullable = false)
     String nomMarcas;
-    LocalDateTime fec_alta;
-    Boolean opc_activo;
+    @Column(name = "fec_alta")
+    LocalDateTime fecAlta;
+    @Column(name = "opc_activo")
+    Boolean opcActivo;
 }

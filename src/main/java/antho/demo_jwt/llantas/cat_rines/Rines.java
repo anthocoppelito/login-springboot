@@ -22,9 +22,11 @@ public class Rines {
     @Id
     @GeneratedValue
     @Column(name = "id_rin")
-    Integer id_rin;
+    Integer idRin;
     String nomRin;
-    LocalDateTime fec_alta;
-    Boolean opc_activo;
+    @Column(name = "fec_alta")
+    LocalDateTime fecAlta;
+    @Column(name = "opc_activo")
+    Boolean opcActivo;
 
 }
