@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,6 +45,34 @@ public class Ctl_InventarioLlantaController {
     public ResponseEntity<List<Ctl_InventarioLlanta>> searchLlanta(@PathVariable String searchTerm) {
         List<Ctl_InventarioLlanta> llanta = ctlInventarioLlantaService.searchLlantas(searchTerm);
         return ResponseEntity.ok(llanta);
+    }
+
+    //editar llanta
+    @PutMapping(value = "/edit")
+    public ResponseEntity<?> editLlanta(@RequestBody Ctl_InventarioLlantaEdit request) {
+        ctlInventarioLlantaService.editLlanta(request);
+        return ResponseEntity.ok("Llanta editada");
+    }
+
+    //borrar llanta
+    @PostMapping(value = "/delete")
+    public ResponseEntity<?> deleteLlanta(@RequestBody Ctl_InventarioLlantaEdit request) {
+        ctlInventarioLlantaService.deleteLlantaPhysically(request.idLlanta);
+        return ResponseEntity.ok("Llanta eliminada");
+    }
+
+    //añadir stock
+    @PutMapping(value = "/addStock")
+    public ResponseEntity<?> addStock(@RequestBody Ctl_InventarioLlantaEdit request) {
+        ctlInventarioLlantaService.addStock(request.idLlanta, request.numExistencia);
+        return ResponseEntity.ok("Stock añadido");
+    }
+
+    //remover stock
+    @PutMapping(value = "/removeStock")
+    public ResponseEntity<?> removeStock(@RequestBody Ctl_InventarioLlantaEdit request) {
+        ctlInventarioLlantaService.removeStock(request.idLlanta, request.numExistencia);
+        return ResponseEntity.ok("Stock removido");
     }
 
 

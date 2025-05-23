@@ -82,6 +82,7 @@ public class Ctl_InventarioLlantaService {
         }
     }
 
+    //remove stock
     public void removeStock(Integer id, Integer quantity) {
         //verifica si la llanta existe
         if (!llantaExists(id)) {
@@ -93,7 +94,7 @@ public class Ctl_InventarioLlantaService {
             throw new RuntimeException("La cantidad a comprar debe ser mayor a 0");
         }
 
-        // Verifica si la llanta tiene suficiente stock
+        // Obtiene la llanta
         Ctl_InventarioLlanta llanta = ctlInventarioLlantaRepository.findById(id)
             .orElseThrow(() -> new RuntimeException("Llanta no encontrada"));
         if (llanta.getNum_existencia() >= quantity) {
@@ -102,6 +103,25 @@ public class Ctl_InventarioLlantaService {
         } else {
             throw new RuntimeException("No hay suficiente stock para la llanta: " + id);
         }
+    }
+
+    //add stock
+    public void addStock(Integer id, Integer quantity) {
+        //verifica si la llanta existe
+        if (!llantaExists(id)) {
+            throw new RuntimeException("Llanta no registrada");
+        }
+
+        //verifica si la cantidad a agregar es mayor a 0
+        if (quantity <= 0) {
+            throw new RuntimeException("La cantidad a añadir debe ser mayor a 0");
+        }
+
+        // Obtiene la llanta
+        Ctl_InventarioLlanta llanta = ctlInventarioLlantaRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Llanta no encontrada"));
+        llanta.setNum_existencia(llanta.getNum_existencia() + quantity);
+        ctlInventarioLlantaRepository.save(llanta);
     }
 
     public Ctl_InventarioLlanta getLlantaEntityById(Integer id) {
@@ -144,6 +164,45 @@ public class Ctl_InventarioLlantaService {
         )
         .toList();
         
+    }
+
+    //editar datos de llanta
+    public void editLlanta(Ctl_InventarioLlantaEdit request) {
+        //verifica si la llanta existe
+        if (!llantaExists(request.idLlanta)) {
+            throw new RuntimeException("Llanta no registrada, verifica el ID");
+        }
+
+        //obtener la marca y revisar si existen
+        Marca marca = marcaRepository.findById(request.idMarca)
+            .orElseThrow(() -> new RuntimeException("Marca no encontrada, verifica el ID"));
+        Modelo modelo = modeloRepository.findById(request.idModelo)
+            .orElseThrow(() -> new RuntimeException("Modelo no encontrado, verifica el ID"));
+        Rines rines = rinesRepository.findById(request.idRin)
+            .orElseThrow(() -> new RuntimeException("Rin no encontrado, verifica el ID"));
+
+        //se construye la instancia
+        Ctl_InventarioLlanta inventario = Ctl_InventarioLlanta.builder()
+            .idLlanta(request.idLlanta)
+            .marca(marca)
+            .modelo(modelo)
+            .rines(rines)
+            .num_preciobasico(request.numPreciobasico)
+            .fec_alta(LocalDateTime.now(ZoneId.of("America/Mazatlan")))
+            .num_existencia(request.numExistencia)
+            .build();
+
+        //se guarda 
+        ctlInventarioLlantaRepository.save(inventario);
+    }
+
+    //borrar fisicamente llanta
+    public void deleteLlantaPhysically(Integer id) {
+        //verifica si la llanta existe
+        if (!llantaExists(id)) {
+            throw new RuntimeException("Llanta no registrada, verifica el ID");
+        }
+        ctlInventarioLlantaRepository.deleteById(id);
     }
 
     
