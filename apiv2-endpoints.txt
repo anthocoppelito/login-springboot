@@ -197,6 +197,36 @@ Integer num_existencia;
     "num_existencia": 300
 }
 
+edit [PUT] http://localhost:8080/api/v2/inventarioLlanta/edit
+{
+        "idLlanta": 1,
+        "idMarca": 2152,
+        "idModelo": 205,
+        "idRin": 205,
+        "numPreciobasico": 120.0,
+        "numExistencia": 270
+    }
+
+borrar [POST] http://localhost:8080/api/v2/inventarioLlanta/delete
+{
+        "idLlanta": 2
+    }
+
+añadir stock [PUT] http://localhost:8080/api/v2/inventarioLlanta/addStock
+
+{
+        "idLlanta": 1,
+        "numExistencia": 10
+
+    }
+
+remover stock [PUT] http://localhost:8080/api/v2/inventarioLlanta/removeStock
+
+{
+        "idLlanta": 1,
+        "numExistencia": 10
+
+    }
 --------------------------------------------------------------
 ctl_movimientosinventario
 
